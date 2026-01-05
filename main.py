@@ -41,6 +41,15 @@ def try_water():
 		use_item(Items.Water)
 
 
+# return true if pumpkin is ready for harvesting. if not, replant it
+def is_pumpkin_ready():
+	if get_entity_type() == Entities.Pumpkin and can_harvest():
+		return True
+	elif get_entity_type() != Entities.Pumpkin:
+		plant(Entities.Pumpkin)
+		return False
+
+
 # iterate through each entity in column until requirements are met
 def check_column(x, world_size):
 	pumpkin_count = 0
@@ -53,10 +62,8 @@ def check_column(x, world_size):
 
 		if expected_entity == Entities.Pumpkin:
 			is_expecting_pumpkin = True
-			if get_entity_type() == Entities.Pumpkin and can_harvest():
+			if is_pumpkin_ready():
 				pumpkin_count += 1
-			elif get_entity_type() != Entities.Pumpkin:
-				plant(Entities.Pumpkin)
 
 		else:
 			try_harvest()
@@ -65,6 +72,7 @@ def check_column(x, world_size):
 
 		move(North)
 	
+	# if it's a column with pumpkins and there's some missing, check the column again
 	if is_expecting_pumpkin and pumpkin_count < 6:
 		return check_column(x, world_size)
 
