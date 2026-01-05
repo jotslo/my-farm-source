@@ -53,7 +53,7 @@ def check_column(x, world_size):
 
 		if expected_entity == Entities.Pumpkin:
 			is_expecting_pumpkin = True
-			if get_entity_type() == Entities.Pumpkin:
+			if get_entity_type() == Entities.Pumpkin and can_harvest():
 				pumpkin_count += 1
 			elif get_entity_type() != Entities.Pumpkin:
 				plant(Entities.Pumpkin)
