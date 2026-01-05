@@ -86,12 +86,19 @@ def try_harvest():
 		harvest()
 
 
+# water the ground if it is too dry
+def try_water():
+	if get_water() < 0.5:
+		use_item(Items.Water)
+
+
 # iterate through every block in the farm
 def scan_farm():
 	world_size = get_world_size()
 
 	for x in range(world_size):
 		for y in range(world_size):
+			try_water()
 			try_harvest()
 			plant_entity()
 			try_harvest()
