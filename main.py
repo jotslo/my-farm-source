@@ -1,5 +1,7 @@
 import consts
 
+first_pumpkin_id = -1
+
 # move drone back to 0, 0
 def reset_drone():
 	x, y = get_pos_x(), get_pos_y()
@@ -65,6 +67,8 @@ def is_pumpkin_ready():
 
 # iterate through each entity in column until requirements are met
 def check_column(x, world_size):
+	global first_pumpkin_id
+
 	pumpkin_count = 0
 	is_expecting_pumpkin = False
 
@@ -77,6 +81,16 @@ def check_column(x, world_size):
 			is_expecting_pumpkin = True
 			if is_pumpkin_ready():
 				pumpkin_count += 1
+			
+			# store the first pumpkin's id
+			if first_pumpkin_id == -1:
+				first_pumpkin_id = measure()
+			
+			# if we're at the end of the pumpkin and it has same ID as pumpkin1, harvest!
+			if x == y == consts.PUMPKIN_SIZE - 1 and measure() == first_pumpkin_id:
+				try_harvest()
+				first_pumpkin_id = -1
+				return
 
 		else:
 			try_harvest()
@@ -86,7 +100,7 @@ def check_column(x, world_size):
 		move(North)
 	
 	# if it's a column with pumpkins and there's some missing, check the column again
-	if is_expecting_pumpkin and pumpkin_count < 6:
+	if is_expecting_pumpkin and pumpkin_count < consts.PUMPKIN_SIZE:
 		return check_column(x, world_size)
 
 
@@ -100,6 +114,9 @@ def scan_farm():
 	for x in range(world_size):
 		check_column(x, world_size)
 		move(East)
+
+		while get_pos_y() > 0:
+			move(South)
 
 reset_drone()
 
