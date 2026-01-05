@@ -4,50 +4,82 @@ ENTITY_MAP = [
 		Entities.Pumpkin,
 		Entities.Pumpkin,
 		Entities.Pumpkin,
+		Entities.Pumpkin,
 		Entities.Grass,
-		Entities.Tree,
-		Entities.Grass
+		Entities.Grass,
+		Entities.Grass,
+		Entities.Grass,
 	],
 	[
 		Entities.Pumpkin,
 		Entities.Pumpkin,
 		Entities.Pumpkin,
-		Entities.Tree,
+		Entities.Pumpkin,
 		Entities.Grass,
-		Entities.Tree
+		Entities.Grass,
+		Entities.Grass,
+		Entities.Grass,
 	],
 	[
 		Entities.Pumpkin,
 		Entities.Pumpkin,
 		Entities.Pumpkin,
+		Entities.Pumpkin,
 		Entities.Grass,
+		Entities.Grass,
+		Entities.Grass,
+		Entities.Grass,
+	],
+	[
+		Entities.Pumpkin,
+		Entities.Pumpkin,
+		Entities.Pumpkin,
+		Entities.Pumpkin,
+		Entities.Grass,
+		Entities.Grass,
+		Entities.Grass,
+		Entities.Grass,
+	],
+	[
 		Entities.Tree,
-		Entities.Grass
+		Entities.Carrot,
+		Entities.Tree,
+		Entities.Carrot,
+		Entities.Carrot,
+		Entities.Carrot,
+		Entities.Grass,
+		Entities.Grass,
+	],
+	[
+		Entities.Carrot,
+		Entities.Tree,
+		Entities.Carrot,
+		Entities.Tree,
+		Entities.Carrot,
+		Entities.Carrot,
+		Entities.Grass,
+		Entities.Grass,
 	],
 	[
 		Entities.Grass,
-		Entities.Tree,
 		Entities.Grass,
-		Entities.Tree,
-		Entities.Carrot,
-		Entities.Tree
+		Entities.Grass,
+		Entities.Grass,
+		Entities.Grass,
+		Entities.Grass,
+		Entities.Grass,
+		Entities.Grass,
 	],
 	[
-		Entities.Tree,
-		Entities.Carrot,
-		Entities.Tree,
-		Entities.Carrot,
-		Entities.Tree,
-		Entities.Carrot
-	],
-	[
-		Entities.Carrot,
-		Entities.Tree,
-		Entities.Carrot,
-		Entities.Tree,
-		Entities.Carrot,
-		Entities.Tree
-	],
+		Entities.Grass,
+		Entities.Grass,
+		Entities.Grass,
+		Entities.Grass,
+		Entities.Grass,
+		Entities.Grass,
+		Entities.Grass,
+		Entities.Grass,
+	]
 ]
 
 
@@ -88,7 +120,7 @@ def try_harvest():
 
 # water the ground if it is too dry
 def try_water():
-	if get_water() < 0.5:
+	if get_water() < 0.8:
 		use_item(Items.Water)
 
 
