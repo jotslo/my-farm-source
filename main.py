@@ -13,17 +13,26 @@ def reset_drone():
 		y -= 1
 
 
+def get_expected_entity():
+	x, y = get_pos_x(), get_pos_y()
+
+	if x >= len(consts.ENTITY_MAP) or y >= len(consts.ENTITY_MAP[x]):
+		length = len(consts.RANDOM_ENTITY_LIST)
+		return consts.RANDOM_ENTITY_LIST[random() * length]
+	
+	return consts.ENTITY_MAP[x][y]
+
+
 # plant the expected entity at the current position
 def plant_entity():
-	x, y = get_pos_x(), get_pos_y()
-	expected_entity = consts.ENTITY_MAP[x][y]
+	expected_entity = get_expected_entity()
 
 	valid_grounds = consts.GROUND_MAP[expected_entity]
 	if get_ground_type() not in valid_grounds:
 		till()
 
 	if expected_entity == Entities.Sunflower:
-		while get_entity_type() != Entities.Sunflower or measure() < 15:
+		while get_entity_type() != Entities.Sunflower or measure() < consts.MIN_SUNFLOWER_PETALS:
 			harvest()
 			plant(Entities.Sunflower)
 
@@ -41,7 +50,7 @@ def try_harvest():
 
 # water the ground if it is too dry
 def try_water():
-	if get_water() < 0.5:
+	if get_water() < 0.3:
 		use_item(Items.Water)
 
 
@@ -60,7 +69,7 @@ def check_column(x, world_size):
 	is_expecting_pumpkin = False
 
 	for y in range(world_size):
-		expected_entity = consts.ENTITY_MAP[x][y]
+		expected_entity = get_expected_entity()
 
 		try_water()
 

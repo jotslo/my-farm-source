@@ -1,3 +1,5 @@
+MIN_SUNFLOWER_PETALS = 0
+
 ENTITY_MAP = [
 	[
 		Entities.Pumpkin,
@@ -120,10 +122,10 @@ ENTITY_MAP = [
         Entities.Grass,
         Entities.Grass,
         Entities.Grass,
-        Entities.Grass,
-        Entities.Grass,
-        Entities.Grass,
-        Entities.Sunflower,
+        Entities.Cactus,
+        Entities.Cactus,
+        Entities.Cactus,
+        Entities.Cactus,
     ],
     [
         Entities.Sunflower,
@@ -134,10 +136,10 @@ ENTITY_MAP = [
         Entities.Grass,
         Entities.Grass,
         Entities.Grass,
-        Entities.Grass,
-        Entities.Grass,
-        Entities.Grass,
-        Entities.Sunflower,
+        Entities.Cactus,
+        Entities.Cactus,
+        Entities.Cactus,
+        Entities.Cactus,
     ],
     [
         Entities.Sunflower,
@@ -148,10 +150,10 @@ ENTITY_MAP = [
         Entities.Grass,
         Entities.Grass,
         Entities.Grass,
-        Entities.Grass,
-        Entities.Grass,
-        Entities.Grass,
-        Entities.Sunflower,
+        Entities.Cactus,
+        Entities.Cactus,
+        Entities.Cactus,
+        Entities.Cactus,
     ],
     [
         Entities.Sunflower,
@@ -162,10 +164,10 @@ ENTITY_MAP = [
         Entities.Grass,
         Entities.Grass,
         Entities.Grass,
-        Entities.Grass,
-        Entities.Grass,
-        Entities.Grass,
-        Entities.Sunflower,
+        Entities.Cactus,
+        Entities.Cactus,
+        Entities.Cactus,
+        Entities.Cactus,
     ]
 ]
 
@@ -179,3 +181,10 @@ GROUND_MAP = {
     Entities.Sunflower: [Grounds.Soil],
     Entities.Tree: [Grounds.Grassland, Grounds.Soil]
 }
+
+RANDOM_ENTITY_LIST = [
+    Entities.Carrot,
+    Entities.Grass,
+    Entities.Sunflower,
+    Entities.Tree
+]
