@@ -1,29 +1,53 @@
 # my preset farm layout
 ENTITY_MAP = [
 	[
+		Entities.Pumpkin,
+		Entities.Pumpkin,
+		Entities.Pumpkin,
 		Entities.Grass,
-		Entities.Grass,
-		Entities.Grass,
+		Entities.Tree,
 		Entities.Grass
 	],
 	[
-		Entities.Bush,
-		Entities.Bush,
-		Entities.Bush,
-		Entities.Bush
+		Entities.Pumpkin,
+		Entities.Pumpkin,
+		Entities.Pumpkin,
+		Entities.Tree,
+		Entities.Grass,
+		Entities.Tree
 	],
 	[
-		Entities.Bush,
-		Entities.Bush,
-		Entities.Bush,
-		Entities.Bush
+		Entities.Pumpkin,
+		Entities.Pumpkin,
+		Entities.Pumpkin,
+		Entities.Grass,
+		Entities.Tree,
+		Entities.Grass
 	],
 	[
+		Entities.Grass,
+		Entities.Tree,
+		Entities.Grass,
+		Entities.Tree,
 		Entities.Carrot,
+		Entities.Tree
+	],
+	[
+		Entities.Tree,
 		Entities.Carrot,
+		Entities.Tree,
 		Entities.Carrot,
+		Entities.Tree,
 		Entities.Carrot
-	]
+	],
+	[
+		Entities.Carrot,
+		Entities.Tree,
+		Entities.Carrot,
+		Entities.Tree,
+		Entities.Carrot,
+		Entities.Tree
+	],
 ]
 
 
@@ -45,7 +69,7 @@ def plant_entity():
 	x, y = get_pos_x(), get_pos_y()
 	expected_entity = ENTITY_MAP[x][y]
 
-	if expected_entity == Entities.Carrot:
+	if expected_entity == Entities.Carrot or expected_entity == Entities.Pumpkin:
 		if get_ground_type() != Grounds.Soil:
 			till()
 	else:
