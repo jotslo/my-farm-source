@@ -1,87 +1,4 @@
-# my preset farm layout
-ENTITY_MAP = [
-	[
-		Entities.Pumpkin,
-		Entities.Pumpkin,
-		Entities.Pumpkin,
-		Entities.Pumpkin,
-		Entities.Grass,
-		Entities.Grass,
-		Entities.Grass,
-		Entities.Grass,
-	],
-	[
-		Entities.Pumpkin,
-		Entities.Pumpkin,
-		Entities.Pumpkin,
-		Entities.Pumpkin,
-		Entities.Grass,
-		Entities.Grass,
-		Entities.Grass,
-		Entities.Grass,
-	],
-	[
-		Entities.Pumpkin,
-		Entities.Pumpkin,
-		Entities.Pumpkin,
-		Entities.Pumpkin,
-		Entities.Grass,
-		Entities.Grass,
-		Entities.Grass,
-		Entities.Grass,
-	],
-	[
-		Entities.Pumpkin,
-		Entities.Pumpkin,
-		Entities.Pumpkin,
-		Entities.Pumpkin,
-		Entities.Grass,
-		Entities.Grass,
-		Entities.Grass,
-		Entities.Grass,
-	],
-	[
-		Entities.Tree,
-		Entities.Carrot,
-		Entities.Tree,
-		Entities.Carrot,
-		Entities.Carrot,
-		Entities.Carrot,
-		Entities.Grass,
-		Entities.Grass,
-	],
-	[
-		Entities.Carrot,
-		Entities.Tree,
-		Entities.Carrot,
-		Entities.Tree,
-		Entities.Carrot,
-		Entities.Carrot,
-		Entities.Grass,
-		Entities.Grass,
-	],
-	[
-		Entities.Grass,
-		Entities.Grass,
-		Entities.Grass,
-		Entities.Grass,
-		Entities.Grass,
-		Entities.Grass,
-		Entities.Grass,
-		Entities.Grass,
-	],
-	[
-		Entities.Grass,
-		Entities.Grass,
-		Entities.Grass,
-		Entities.Grass,
-		Entities.Grass,
-		Entities.Grass,
-		Entities.Grass,
-		Entities.Grass,
-	]
-]
-
+import consts
 
 # move drone back to 0, 0
 def reset_drone():
@@ -99,7 +16,7 @@ def reset_drone():
 # plant the expected entity at the current position
 def plant_entity():
 	x, y = get_pos_x(), get_pos_y()
-	expected_entity = ENTITY_MAP[x][y]
+	expected_entity = consts.ENTITY_MAP[x][y]
 
 	if expected_entity == Entities.Carrot or expected_entity == Entities.Pumpkin:
 		if get_ground_type() != Grounds.Soil:
