@@ -18,13 +18,17 @@ def plant_entity():
 	x, y = get_pos_x(), get_pos_y()
 	expected_entity = consts.ENTITY_MAP[x][y]
 
-	if get_entity_type() == expected_entity:
-		return
-
 	valid_grounds = consts.GROUND_MAP[expected_entity]
-
 	if get_ground_type() not in valid_grounds:
 		till()
+
+	if expected_entity == Entities.Sunflower:
+		while get_entity_type() != Entities.Sunflower or measure() < 15:
+			harvest()
+			plant(Entities.Sunflower)
+
+	if get_entity_type() == expected_entity:
+		return
 	
 	plant(expected_entity)
 
@@ -43,7 +47,6 @@ def try_water():
 
 # return true if pumpkin is ready for harvesting. if not, replant it
 def is_pumpkin_ready():
-
 	if get_entity_type() == Entities.Pumpkin and can_harvest():
 		return True
 	elif get_entity_type() != Entities.Pumpkin:
