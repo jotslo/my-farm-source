@@ -43,10 +43,11 @@ def try_water():
 
 # return true if pumpkin is ready for harvesting. if not, replant it
 def is_pumpkin_ready():
+
 	if get_entity_type() == Entities.Pumpkin and can_harvest():
 		return True
 	elif get_entity_type() != Entities.Pumpkin:
-		plant(Entities.Pumpkin)
+		plant_entity()
 		return False
 
 
