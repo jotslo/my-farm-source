@@ -41,6 +41,32 @@ def try_water():
 		use_item(Items.Water)
 
 
+def remove_dead_pumpkins():
+	pumpkin_count = 0
+	for x in range(6):
+		for y in range(6):
+			entity_type = get_entity_type()
+			if entity_type == Entities.Pumpkin and can_harvest():
+				pumpkin_count += 1
+			elif entity_type != Entities.Pumpkin:
+				plant(Entities.Pumpkin)
+			
+			move(North)
+
+		for i in range(6):
+			move(South)
+
+		move(East)
+	
+	for i in range(6):
+		move(West)
+	
+	if pumpkin_count < 6 * 6:
+		return remove_dead_pumpkins()
+	
+	return True
+
+
 # iterate through every block in the farm
 def scan_farm():
 	world_size = get_world_size()
@@ -55,6 +81,7 @@ def scan_farm():
 			move(North)
 		move(East)
 
+	remove_dead_pumpkins()
 
 reset_drone()
 
