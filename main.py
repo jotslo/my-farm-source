@@ -37,51 +37,48 @@ def try_harvest():
 
 # water the ground if it is too dry
 def try_water():
-	if get_water() < 0.8:
+	if get_water() < 0.5:
 		use_item(Items.Water)
 
 
-def remove_dead_pumpkins():
+# iterate through each entity in column until requirements are met
+def check_column(x, world_size):
 	pumpkin_count = 0
-	for x in range(6):
-		for y in range(6):
-			entity_type = get_entity_type()
-			if entity_type == Entities.Pumpkin and can_harvest():
+	is_expecting_pumpkin = False
+
+	for y in range(world_size):
+		expected_entity = consts.ENTITY_MAP[x][y]
+
+		try_water()
+
+		if expected_entity == Entities.Pumpkin:
+			is_expecting_pumpkin = True
+			if get_entity_type() == Entities.Pumpkin:
 				pumpkin_count += 1
-			elif entity_type != Entities.Pumpkin:
+			elif get_entity_type() != Entities.Pumpkin:
 				plant(Entities.Pumpkin)
-			
-			move(North)
 
-		for i in range(6):
-			move(South)
+		else:
+			try_harvest()
+			plant_entity()
+			try_harvest()
 
-		move(East)
+		move(North)
 	
-	for i in range(6):
-		move(West)
-	
-	if pumpkin_count < 6 * 6:
-		return remove_dead_pumpkins()
-	
-	return True
+	if is_expecting_pumpkin and pumpkin_count < 6:
+		return check_column(x, world_size)
 
 
 # iterate through every block in the farm
 def scan_farm():
 	world_size = get_world_size()
 
+	# harvest pumpkin patch that was finished last iteration
+	try_harvest()
+
 	for x in range(world_size):
-		for y in range(world_size):
-			try_water()
-			try_harvest()
-			plant_entity()
-			try_harvest()
-
-			move(North)
+		check_column(x, world_size)
 		move(East)
-
-	remove_dead_pumpkins()
 
 reset_drone()
 
