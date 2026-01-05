@@ -18,15 +18,15 @@ def plant_entity():
 	x, y = get_pos_x(), get_pos_y()
 	expected_entity = consts.ENTITY_MAP[x][y]
 
-	if expected_entity == Entities.Carrot or expected_entity == Entities.Pumpkin:
-		if get_ground_type() != Grounds.Soil:
-			till()
-	else:
-		if get_ground_type() != Grounds.Grassland:
-			till()
+	if get_entity_type() == expected_entity:
+		return
 
-	if get_entity_type() != expected_entity:
-		plant(expected_entity)
+	valid_grounds = consts.GROUND_MAP[expected_entity]
+
+	if get_ground_type() not in valid_grounds:
+		till()
+	
+	plant(expected_entity)
 
 
 # attempt to harvest the entity under the drone
